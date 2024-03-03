@@ -1,0 +1,283 @@
+ARM GAS  /tmp/cceEDVaM.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"USART2_Config.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/USART2_Config.c"
+  18              		.section	.text.USART2_Init,"ax",%progbits
+  19              		.align	1
+  20              		.global	USART2_Init
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	USART2_Init:
+  26              	.LFB65:
+   1:Core/Src/USART2_Config.c **** #include "USART2_Config.h"
+   2:Core/Src/USART2_Config.c **** #include <stm32f103x6.h>
+   3:Core/Src/USART2_Config.c **** 
+   4:Core/Src/USART2_Config.c **** void USART2_Init(void){
+  27              		.loc 1 4 23 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   5:Core/Src/USART2_Config.c ****    //Enable GPIOA Clock
+   6:Core/Src/USART2_Config.c ****    RCC -> APB2ENR |= (1<<2);
+  32              		.loc 1 6 4 view .LVU1
+  33              		.loc 1 6 8 is_stmt 0 view .LVU2
+  34 0000 244B     		ldr	r3, .L2
+  35 0002 9A69     		ldr	r2, [r3, #24]
+  36              		.loc 1 6 19 view .LVU3
+  37 0004 42F00402 		orr	r2, r2, #4
+  38 0008 9A61     		str	r2, [r3, #24]
+   7:Core/Src/USART2_Config.c ****    //Enable USART2 Clock
+   8:Core/Src/USART2_Config.c ****    RCC -> APB1ENR |= (1<17);
+  39              		.loc 1 8 4 is_stmt 1 view .LVU4
+  40              		.loc 1 8 8 is_stmt 0 view .LVU5
+  41 000a DA69     		ldr	r2, [r3, #28]
+  42              		.loc 1 8 19 view .LVU6
+  43 000c 42F00102 		orr	r2, r2, #1
+  44 0010 DA61     		str	r2, [r3, #28]
+   9:Core/Src/USART2_Config.c **** 
+  10:Core/Src/USART2_Config.c ****    /*
+  11:Core/Src/USART2_Config.c ****       -USARTx_TX Full duplex Alternate Function push-pull
+  12:Core/Src/USART2_Config.c ****       -USART2_TX -> PA2
+  13:Core/Src/USART2_Config.c ****       -USARTx_RX Full duplex Input floating
+  14:Core/Src/USART2_Config.c ****       -USART2_RX -> PA3
+ARM GAS  /tmp/cceEDVaM.s 			page 2
+
+
+  15:Core/Src/USART2_Config.c ****    */
+  16:Core/Src/USART2_Config.c **** 
+  17:Core/Src/USART2_Config.c ****    //PA2 OUTPUT Mode, Max 50 Mhz
+  18:Core/Src/USART2_Config.c ****    GPIOA -> CRL |= (1<<8);
+  45              		.loc 1 18 4 is_stmt 1 view .LVU7
+  46              		.loc 1 18 10 is_stmt 0 view .LVU8
+  47 0012 A3F58433 		sub	r3, r3, #67584
+  48 0016 1A68     		ldr	r2, [r3]
+  49              		.loc 1 18 17 view .LVU9
+  50 0018 42F48072 		orr	r2, r2, #256
+  51 001c 1A60     		str	r2, [r3]
+  19:Core/Src/USART2_Config.c ****    GPIOA -> CRL |= (1<<9);
+  52              		.loc 1 19 4 is_stmt 1 view .LVU10
+  53              		.loc 1 19 10 is_stmt 0 view .LVU11
+  54 001e 1A68     		ldr	r2, [r3]
+  55              		.loc 1 19 17 view .LVU12
+  56 0020 42F40072 		orr	r2, r2, #512
+  57 0024 1A60     		str	r2, [r3]
+  20:Core/Src/USART2_Config.c ****    //PA2 Alternate Function push-pull
+  21:Core/Src/USART2_Config.c ****    GPIOA -> CRL &= ~(1<<10);
+  58              		.loc 1 21 4 is_stmt 1 view .LVU13
+  59              		.loc 1 21 10 is_stmt 0 view .LVU14
+  60 0026 1A68     		ldr	r2, [r3]
+  61              		.loc 1 21 17 view .LVU15
+  62 0028 22F48062 		bic	r2, r2, #1024
+  63 002c 1A60     		str	r2, [r3]
+  22:Core/Src/USART2_Config.c ****    GPIOA -> CRL |=  (1<<11);
+  64              		.loc 1 22 4 is_stmt 1 view .LVU16
+  65              		.loc 1 22 10 is_stmt 0 view .LVU17
+  66 002e 1A68     		ldr	r2, [r3]
+  67              		.loc 1 22 17 view .LVU18
+  68 0030 42F40062 		orr	r2, r2, #2048
+  69 0034 1A60     		str	r2, [r3]
+  23:Core/Src/USART2_Config.c **** 
+  24:Core/Src/USART2_Config.c ****    //PA3 INPUT Mode
+  25:Core/Src/USART2_Config.c ****    GPIOA -> CRL &= ~(1<<12);
+  70              		.loc 1 25 4 is_stmt 1 view .LVU19
+  71              		.loc 1 25 10 is_stmt 0 view .LVU20
+  72 0036 1A68     		ldr	r2, [r3]
+  73              		.loc 1 25 17 view .LVU21
+  74 0038 22F48052 		bic	r2, r2, #4096
+  75 003c 1A60     		str	r2, [r3]
+  26:Core/Src/USART2_Config.c ****    GPIOA -> CRL &= ~(1<<13);
+  76              		.loc 1 26 4 is_stmt 1 view .LVU22
+  77              		.loc 1 26 10 is_stmt 0 view .LVU23
+  78 003e 1A68     		ldr	r2, [r3]
+  79              		.loc 1 26 17 view .LVU24
+  80 0040 22F40052 		bic	r2, r2, #8192
+  81 0044 1A60     		str	r2, [r3]
+  27:Core/Src/USART2_Config.c ****    //PA3 Floating Input
+  28:Core/Src/USART2_Config.c ****    GPIOA -> CRL |=  (1<<14);
+  82              		.loc 1 28 4 is_stmt 1 view .LVU25
+  83              		.loc 1 28 10 is_stmt 0 view .LVU26
+  84 0046 1A68     		ldr	r2, [r3]
+  85              		.loc 1 28 17 view .LVU27
+  86 0048 42F48042 		orr	r2, r2, #16384
+  87 004c 1A60     		str	r2, [r3]
+ARM GAS  /tmp/cceEDVaM.s 			page 3
+
+
+  29:Core/Src/USART2_Config.c ****    GPIOA -> CRL &= ~(1<<15);
+  88              		.loc 1 29 4 is_stmt 1 view .LVU28
+  89              		.loc 1 29 10 is_stmt 0 view .LVU29
+  90 004e 1A68     		ldr	r2, [r3]
+  91              		.loc 1 29 17 view .LVU30
+  92 0050 22F40042 		bic	r2, r2, #32768
+  93 0054 1A60     		str	r2, [r3]
+  30:Core/Src/USART2_Config.c ****    //No REMAP
+  31:Core/Src/USART2_Config.c ****    AFIO -> MAPR &= ~(1<<3);
+  94              		.loc 1 31 4 is_stmt 1 view .LVU31
+  95              		.loc 1 31 9 is_stmt 0 view .LVU32
+  96 0056 104A     		ldr	r2, .L2+4
+  97 0058 5368     		ldr	r3, [r2, #4]
+  98              		.loc 1 31 17 view .LVU33
+  99 005a 23F00803 		bic	r3, r3, #8
+ 100 005e 5360     		str	r3, [r2, #4]
+  32:Core/Src/USART2_Config.c **** 
+  33:Core/Src/USART2_Config.c ****    //USART ENABLE
+  34:Core/Src/USART2_Config.c ****    USART2 -> CR1 |= (1<<13);
+ 101              		.loc 1 34 4 is_stmt 1 view .LVU34
+ 102              		.loc 1 34 11 is_stmt 0 view .LVU35
+ 103 0060 0E4B     		ldr	r3, .L2+8
+ 104 0062 DA68     		ldr	r2, [r3, #12]
+ 105              		.loc 1 34 18 view .LVU36
+ 106 0064 42F40052 		orr	r2, r2, #8192
+ 107 0068 DA60     		str	r2, [r3, #12]
+  35:Core/Src/USART2_Config.c **** 
+  36:Core/Src/USART2_Config.c ****    //1 Start bit 8 data bits n stop bit
+  37:Core/Src/USART2_Config.c ****    USART2 -> CR1 &= ~(1<<12);
+ 108              		.loc 1 37 4 is_stmt 1 view .LVU37
+ 109              		.loc 1 37 11 is_stmt 0 view .LVU38
+ 110 006a DA68     		ldr	r2, [r3, #12]
+ 111              		.loc 1 37 18 view .LVU39
+ 112 006c 22F48052 		bic	r2, r2, #4096
+ 113 0070 DA60     		str	r2, [r3, #12]
+  38:Core/Src/USART2_Config.c **** 
+  39:Core/Src/USART2_Config.c ****    //1 Stop bit
+  40:Core/Src/USART2_Config.c ****    USART2 -> CR2 &= ~(1<<12);
+ 114              		.loc 1 40 4 is_stmt 1 view .LVU40
+ 115              		.loc 1 40 11 is_stmt 0 view .LVU41
+ 116 0072 1A69     		ldr	r2, [r3, #16]
+ 117              		.loc 1 40 18 view .LVU42
+ 118 0074 22F48052 		bic	r2, r2, #4096
+ 119 0078 1A61     		str	r2, [r3, #16]
+  41:Core/Src/USART2_Config.c ****    USART2 -> CR2 &= ~(1<<13);
+ 120              		.loc 1 41 4 is_stmt 1 view .LVU43
+ 121              		.loc 1 41 11 is_stmt 0 view .LVU44
+ 122 007a 1A69     		ldr	r2, [r3, #16]
+ 123              		.loc 1 41 18 view .LVU45
+ 124 007c 22F40052 		bic	r2, r2, #8192
+ 125 0080 1A61     		str	r2, [r3, #16]
+  42:Core/Src/USART2_Config.c **** 
+  43:Core/Src/USART2_Config.c ****    //Transmitter Enable
+  44:Core/Src/USART2_Config.c ****    USART2 -> CR1 |= (1<<3);
+ 126              		.loc 1 44 4 is_stmt 1 view .LVU46
+ 127              		.loc 1 44 11 is_stmt 0 view .LVU47
+ 128 0082 DA68     		ldr	r2, [r3, #12]
+ARM GAS  /tmp/cceEDVaM.s 			page 4
+
+
+ 129              		.loc 1 44 18 view .LVU48
+ 130 0084 42F00802 		orr	r2, r2, #8
+ 131 0088 DA60     		str	r2, [r3, #12]
+  45:Core/Src/USART2_Config.c **** 
+  46:Core/Src/USART2_Config.c ****    //115200 BAUD RATE
+  47:Core/Src/USART2_Config.c ****    USART2 -> BRR = (13<<4);
+ 132              		.loc 1 47 4 is_stmt 1 view .LVU49
+ 133              		.loc 1 47 18 is_stmt 0 view .LVU50
+ 134 008a D022     		movs	r2, #208
+ 135 008c 9A60     		str	r2, [r3, #8]
+  48:Core/Src/USART2_Config.c ****    USART2 -> BRR = (80<<0);
+ 136              		.loc 1 48 4 is_stmt 1 view .LVU51
+ 137              		.loc 1 48 18 is_stmt 0 view .LVU52
+ 138 008e 5022     		movs	r2, #80
+ 139 0090 9A60     		str	r2, [r3, #8]
+  49:Core/Src/USART2_Config.c **** 
+  50:Core/Src/USART2_Config.c **** }
+ 140              		.loc 1 50 1 view .LVU53
+ 141 0092 7047     		bx	lr
+ 142              	.L3:
+ 143              		.align	2
+ 144              	.L2:
+ 145 0094 00100240 		.word	1073876992
+ 146 0098 00000140 		.word	1073807360
+ 147 009c 00440040 		.word	1073759232
+ 148              		.cfi_endproc
+ 149              	.LFE65:
+ 151              		.section	.text.USART2_TransmitData,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	USART2_TransmitData
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	USART2_TransmitData:
+ 159              	.LVL0:
+ 160              	.LFB66:
+  51:Core/Src/USART2_Config.c **** void USART2_TransmitData(uint8_t data){
+ 161              		.loc 1 51 39 is_stmt 1 view -0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		@ link register save eliminated.
+  52:Core/Src/USART2_Config.c ****    USART2 -> DR = data;
+ 166              		.loc 1 52 4 view .LVU55
+ 167              		.loc 1 52 17 is_stmt 0 view .LVU56
+ 168 0000 014B     		ldr	r3, .L5
+ 169 0002 5860     		str	r0, [r3, #4]
+  53:Core/Src/USART2_Config.c **** }
+ 170              		.loc 1 53 1 view .LVU57
+ 171 0004 7047     		bx	lr
+ 172              	.L6:
+ 173 0006 00BF     		.align	2
+ 174              	.L5:
+ 175 0008 00440040 		.word	1073759232
+ 176              		.cfi_endproc
+ 177              	.LFE66:
+ 179              		.section	.text.USART2_ReceiveData,"ax",%progbits
+ARM GAS  /tmp/cceEDVaM.s 			page 5
+
+
+ 180              		.align	1
+ 181              		.global	USART2_ReceiveData
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 186              	USART2_ReceiveData:
+ 187              	.LVL1:
+ 188              	.LFB67:
+  54:Core/Src/USART2_Config.c **** void USART2_ReceiveData(uint8_t data){
+ 189              		.loc 1 54 38 is_stmt 1 view -0
+ 190              		.cfi_startproc
+ 191              		@ args = 0, pretend = 0, frame = 0
+ 192              		@ frame_needed = 0, uses_anonymous_args = 0
+ 193              		@ link register save eliminated.
+  55:Core/Src/USART2_Config.c ****     
+  56:Core/Src/USART2_Config.c **** }...
+ 194              		.loc 1 56 1 view .LVU59
+ 195 0000 7047     		bx	lr
+ 196              		.cfi_endproc
+ 197              	.LFE67:
+ 199              		.text
+ 200              	.Letext0:
+ 201              		.file 2 "/home/bugraaa/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
+ 202              		.file 3 "/home/bugraaa/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
+ 203              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103x6.h"
+ARM GAS  /tmp/cceEDVaM.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 USART2_Config.c
+     /tmp/cceEDVaM.s:19     .text.USART2_Init:00000000 $t
+     /tmp/cceEDVaM.s:25     .text.USART2_Init:00000000 USART2_Init
+     /tmp/cceEDVaM.s:145    .text.USART2_Init:00000094 $d
+     /tmp/cceEDVaM.s:152    .text.USART2_TransmitData:00000000 $t
+     /tmp/cceEDVaM.s:158    .text.USART2_TransmitData:00000000 USART2_TransmitData
+     /tmp/cceEDVaM.s:175    .text.USART2_TransmitData:00000008 $d
+     /tmp/cceEDVaM.s:180    .text.USART2_ReceiveData:00000000 $t
+     /tmp/cceEDVaM.s:186    .text.USART2_ReceiveData:00000000 USART2_ReceiveData
+
+NO UNDEFINED SYMBOLS
